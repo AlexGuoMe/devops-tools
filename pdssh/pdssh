@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ $# != 2 ]
+then
+echo Usage : $0 host-web.txt "'uptime'"
+exit 1
+fi
+
+if [[ $1'xx' == '-hxx' || $1'xx' == '--helpxx' ]]
+then
+echo Usage : $0 host-web.txt "'uptime'"
+exit 1
+fi
+
+list=$1
+cmd=$2
+
+host=`awk '{print $1","}' $list`
+
+pdsh -w "$host" "$cmd"
+
